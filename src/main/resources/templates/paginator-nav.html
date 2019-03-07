@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://tymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+<nav th:fragment="paginator">
+ <ul>
+  <li>
+   <span th:if="${page.first}">primera</span>
+   <a th:if="${not page.first}" th:href="@{${page.url}(page=0)}">primera</a>
+  </li>
+  
+  <li>
+   <span th:if="${not page.hastPrevius}">Anterior</span>
+   <a th:if="${page.hastPrevius}" th:href="@{${page.url}(page=${page.paginaActual-2})}">Anterior</a>
+  </li>
+  
+   <li>
+   <span th:if="${not page.hastNext}">Siguiente</span>
+   <a th:if="${page.hastNext}" th:href="@{${page.url}(page=${page.paginaActual})}">Siguiente</a>
+  </li>
+  
+  <li th:each="item : ${page.paginas}">
+   <span th:if="${item.actual}" th:text="${item.numero}"></span>
+   <a th:if="${not item.actual}" th:href="@{${page.url}(page=${item.numero-1})}" th:text=""></a>
+  </li>
+  
+  <li>
+   <span th:if="${page.last}">ultimo</span>
+   <a th:if="${not page.last}" th:href="@{${page.url}(page=${page.totalPaginas-1})}">ultimo</a>
+  </li>
+  
+ </ul>
+</nav>
+
+</body>
+</html>
