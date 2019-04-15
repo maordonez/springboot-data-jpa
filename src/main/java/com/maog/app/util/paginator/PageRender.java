@@ -11,41 +11,43 @@ public class PageRender<T> {
 	private Page<T> page;
 	
 	private int totalPaginas;
-	private int numElementosPorPaginas;
+	
+	private int numElementosPorPagina;
+	
 	private int paginaActual;
+	
 	private List<PageItem> paginas;
 	
 	public PageRender(String url, Page<T> page) {
 		this.url = url;
 		this.page = page;
-		this.paginas = new ArrayList<>();
+		this.paginas = new ArrayList<PageItem>();
 		
-		this.numElementosPorPaginas = page.getSize();
-		this.totalPaginas = page.getTotalPages();
-		this.paginaActual = page.getNumber()+1;
+		numElementosPorPagina = page.getSize();
+		totalPaginas = page.getTotalPages();
+		paginaActual = page.getNumber() + 1;
 		
-		int desde,hasta;
-		if(totalPaginas <= numElementosPorPaginas) {
+		int desde, hasta;
+		if(totalPaginas <= numElementosPorPagina) {
 			desde = 1;
 			hasta = totalPaginas;
-		}else {
-			if(paginaActual<= numElementosPorPaginas/2) {
+		} else {
+			if(paginaActual <= numElementosPorPagina/2) {
 				desde = 1;
-				hasta = numElementosPorPaginas;
-			}else if (paginaActual >= totalPaginas - numElementosPorPaginas) {
-				desde = totalPaginas -numElementosPorPaginas + 1;
-				hasta = numElementosPorPaginas;
-				
-			}else {
-				desde = paginaActual - numElementosPorPaginas/2;
-				hasta = numElementosPorPaginas;
-				
+				hasta = numElementosPorPagina;
+			} else if(paginaActual >= totalPaginas - numElementosPorPagina/2 ) {
+				desde = totalPaginas - numElementosPorPagina + 1;
+				hasta = numElementosPorPagina;
+			} else {
+				desde = paginaActual -numElementosPorPagina/2;
+				hasta = numElementosPorPagina;
 			}
 		}
 		
-		for(int i=0;i<hasta;i++) {
-			paginas.add(new PageItem(desde +1, paginaActual == desde +1));
+		for(int i=0; i < hasta; i++) {
+			paginas.add(new PageItem(desde + i, paginaActual == desde+i));
 		}
+
 	}
 
 	public String getUrl() {
@@ -76,7 +78,7 @@ public class PageRender<T> {
 		return page.hasNext();
 	}
 	
-	public boolean isHastPrevius() {
+	public boolean isHasPrevious() {
 		return page.hasPrevious();
 	}
 
