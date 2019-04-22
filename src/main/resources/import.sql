@@ -26,3 +26,13 @@ INSERT INTO clientes (id, nombre, apellido, email,foto, fecha_nacimiento, create
 INSERT INTO clientes (id, nombre, apellido, email,foto, fecha_nacimiento, create_at) VALUES (26, 'Juanito', 'Caceres', 'juanito@mail.com','', '1993-04-22', '2017-08-28');
 INSERT INTO clientes (id, nombre, apellido, email,foto, fecha_nacimiento, create_at) VALUES (27, 'Pepito', 'Perez', 'pepito@mail.com','', '2000-03-18', '2017-08-28');
 INSERT INTO clientes (id, nombre, apellido, email,foto, fecha_nacimiento, create_at) VALUES (28, 'Juanito', 'Caceres', 'juanito@mail.com','', '1993-04-22', '2017-08-28');
+
+INSERT INTO productos (nombre, precio, create_at) VALUES ('Panasonic Pantalla LCD',259990, NOW());
+INSERT INTO productos (nombre, precio, create_at) VALUES ('Sony Camara Digital DCS-W3200',123490, NOW());
+INSERT INTO productos (nombre, precio, create_at) VALUES ('Sony Notebook Z110',37990, NOW());
+
+INSERT INTO facturas (descripcion, observacion, cliente_id, create_at) VALUES ('Factura equipos de oficina', null, 1, NOW());
+
+INSERT INTO factura_items (cantidad, factura_id, producto_id) VALUES (1,1,1);
+INSERT INTO factura_items (cantidad, factura_id, producto_id) VALUES (2,1,2);
+INSERT INTO factura_items (cantidad, factura_id, producto_id) VALUES (1,1,3);
